@@ -10,6 +10,10 @@ struct Superhero {
     let id: Int
     let name: String
     let thumbnail: Thumbnail?
+    var comics: [Items]
+    var events: [Items]
+    var stories: [Items]
+    var series: [Items]
     
     init?(json: [String: Any]) {
         guard let id = json["id"] as? Int,
@@ -24,5 +28,34 @@ struct Superhero {
         let thumbnail = Thumbnail(path: path, imageExtension: imageExtension)
         self.thumbnail = thumbnail
         
+        self.comics = Items.getItemsData(json: json, itemsKey: "comics")
+        self.events = Items.getItemsData(json: json, itemsKey: "events")
+        self.stories = Items.getItemsData(json: json, itemsKey: "stories")
+        self.series = Items.getItemsData(json: json, itemsKey: "series")
+        
+    }
+    
+}
+
+struct Items {
+    let name: String
+    let resourceURI: String
+    
+    init(name: String, resourceURI: String) {
+        self.name = name
+        self.resourceURI = resourceURI
+    }
+    
+    static func getItemsData(json: [String: Any], itemsKey: String) -> [Items] {
+        var itemsObject = [Items]()
+        if let itemsData = json[itemsKey] as? [String: Any], let items = itemsData["items"] as? [[String: Any]] {
+            for item in items {
+                if let itemName = item["name"] as? String, let itemResourceURI = item["resourceURI"] as? String{
+                    let finalItem = Items(name: itemName, resourceURI: itemResourceURI)
+                    itemsObject.append(finalItem)
+                }
+            }
+        }
+        return itemsObject
     }
 }

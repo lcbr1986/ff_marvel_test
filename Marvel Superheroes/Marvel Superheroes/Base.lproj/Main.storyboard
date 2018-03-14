@@ -116,11 +116,33 @@
                                     <constraint firstAttribute="height" constant="128" id="PV8-oZ-hlE"/>
                                 </constraints>
                             </imageView>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="LWK-hx-uao">
+                                <rect key="frame" x="0.0" y="215" width="375" height="452"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="itemsCell" id="1iK-Tx-BZK">
+                                        <rect key="frame" x="0.0" y="55.5" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="1iK-Tx-BZK" id="aCh-D3-dFg">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="QmY-fk-JZp" id="Kxz-Ur-093"/>
+                                    <outlet property="delegate" destination="QmY-fk-JZp" id="BzQ-lh-Vxf"/>
+                                </connections>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="LWK-hx-uao" firstAttribute="trailing" secondItem="NNG-8p-ldy" secondAttribute="trailing" id="2rv-fg-65z"/>
+                            <constraint firstItem="LWK-hx-uao" firstAttribute="leading" secondItem="NNG-8p-ldy" secondAttribute="leading" id="Hqa-lV-1vq"/>
                             <constraint firstItem="R0v-eq-Cl0" firstAttribute="top" secondItem="NNG-8p-ldy" secondAttribute="top" constant="15" id="QFY-ME-d9u"/>
+                            <constraint firstItem="LWK-hx-uao" firstAttribute="top" secondItem="R0v-eq-Cl0" secondAttribute="bottom" constant="8" id="Zt2-dD-TpD"/>
                             <constraint firstItem="R0v-eq-Cl0" firstAttribute="centerX" secondItem="4fQ-8K-7X5" secondAttribute="centerX" id="o9l-YK-JIB"/>
+                            <constraint firstItem="LWK-hx-uao" firstAttribute="bottom" secondItem="NNG-8p-ldy" secondAttribute="bottom" id="riP-7o-m9x"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="NNG-8p-ldy"/>
                     </view>
