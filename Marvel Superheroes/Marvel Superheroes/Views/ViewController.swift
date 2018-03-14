@@ -72,6 +72,19 @@ class ViewController: UIViewController {
             messageToShow, preferredStyle: UIAlertControllerStyle.alert)
         self.present(alertController, animated: true, completion: nil)
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showDetailSegue" {
+            
+            guard let indexPath = self.tableView.indexPathForSelectedRow else {
+                return
+            }
+            let superhero:Superhero = superheros[indexPath.row]
+            let superheroDetailViewController = segue.destination as! SuperheroDetailViewController
+            superheroDetailViewController.superhero = superhero
+            superheroDetailViewController.superheroImage = self.imageCache[superhero.name]
+        }
+    }
 }
 
 extension ViewController: UITableViewDataSource, UITableViewDelegate {
@@ -132,6 +145,10 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
             self.currentOffset += 20
             getSuperheros()
         }
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 }
 
