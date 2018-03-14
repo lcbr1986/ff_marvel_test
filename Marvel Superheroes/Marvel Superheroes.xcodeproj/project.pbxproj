@@ -16,6 +16,7 @@
 		B2EF64E22058462300A662AC /* NetworkController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2EF64E12058462300A662AC /* NetworkController.swift */; };
 		B2EF64EA205852F500A662AC /* Superhero.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2EF64E9205852F500A662AC /* Superhero.swift */; };
 		B2EF64ED2058583100A662AC /* Thumbnail.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2EF64EC2058583100A662AC /* Thumbnail.swift */; };
+		B2EF64F3205976A200A662AC /* SuperheroTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2EF64F2205976A200A662AC /* SuperheroTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,6 +44,7 @@
 		B2EF64E320584BA000A662AC /* Marvel Superheroes-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Marvel Superheroes-Bridging-Header.h"; sourceTree = "<group>"; };
 		B2EF64E9205852F500A662AC /* Superhero.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Superhero.swift; sourceTree = "<group>"; };
 		B2EF64EC2058583100A662AC /* Thumbnail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Thumbnail.swift; sourceTree = "<group>"; };
+		B2EF64F2205976A200A662AC /* SuperheroTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuperheroTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,6 +112,7 @@
 			isa = PBXGroup;
 			children = (
 				B2EF64C32057E1B100A662AC /* ViewController.swift */,
+				B2EF64F2205976A200A662AC /* SuperheroTableViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -238,6 +241,7 @@
 				B2EF64C42057E1B100A662AC /* ViewController.swift in Sources */,
 				B2EF64C22057E1B100A662AC /* AppDelegate.swift in Sources */,
 				B2EF64E22058462300A662AC /* NetworkController.swift in Sources */,
+				B2EF64F3205976A200A662AC /* SuperheroTableViewCell.swift in Sources */,
 				B2EF64ED2058583100A662AC /* Thumbnail.swift in Sources */,
 				B2EF64EA205852F500A662AC /* Superhero.swift in Sources */,
 			);
