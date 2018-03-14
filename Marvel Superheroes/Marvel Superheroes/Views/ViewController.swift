@@ -92,6 +92,28 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
         let currentSuperhero = superheros[indexPath.row]
         cell.titleLabel.text = currentSuperhero.name
         
+        cell.heroImageView.image = nil
+        
+        guard let imagePath = currentSuperhero.thumbnail?.path,
+            let imageExtension = currentSuperhero.thumbnail?.imageExtension else {
+                return cell
+        }
+        let imageUrl: String = "\(String(describing: imagePath)).\(String(describing: imageExtension))"
+        let httpsImageUrl = imageUrl.replacingOccurrences(of: "http", with: "https")
+        guard let url = URL(string: httpsImageUrl) else {
+            return cell
+        }
+        
+        DispatchQueue.global().async {
+            if let data = try? Data(contentsOf: url) {
+                DispatchQueue.main.async {
+                    cell.heroImageView.image = UIImage(data: data)
+                }
+            } else {
+                cell.heroImageView.image = nil
+            }
+        }
+        
         return cell
     }
     
