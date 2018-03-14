@@ -13,6 +13,7 @@ class ViewController: UIViewController {
     var superheros: [Superhero] = [Superhero]()
     var currentOffset: Int = 0
     var totalSuperheros: Int = 0
+    var imageCache:[String: UIImage] = [String: UIImage]()
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -93,24 +94,29 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
         cell.titleLabel.text = currentSuperhero.name
         
         cell.heroImageView.image = nil
-        
-        guard let imagePath = currentSuperhero.thumbnail?.path,
-            let imageExtension = currentSuperhero.thumbnail?.imageExtension else {
+        if let heroImage = imageCache[currentSuperhero.name] {
+            cell.heroImageView.image = heroImage
+        } else {
+            guard let imagePath = currentSuperhero.thumbnail?.path,
+                let imageExtension = currentSuperhero.thumbnail?.imageExtension else {
+                    return cell
+            }
+            let imageUrl: String = "\(String(describing: imagePath)).\(String(describing: imageExtension))"
+            let httpsImageUrl = imageUrl.replacingOccurrences(of: "http", with: "https")
+            guard let url = URL(string: httpsImageUrl) else {
                 return cell
-        }
-        let imageUrl: String = "\(String(describing: imagePath)).\(String(describing: imageExtension))"
-        let httpsImageUrl = imageUrl.replacingOccurrences(of: "http", with: "https")
-        guard let url = URL(string: httpsImageUrl) else {
-            return cell
-        }
-        
-        DispatchQueue.global().async {
-            if let data = try? Data(contentsOf: url) {
-                DispatchQueue.main.async {
-                    cell.heroImageView.image = UIImage(data: data)
+            }
+            
+            DispatchQueue.global().async {
+                if let data = try? Data(contentsOf: url) {
+                    DispatchQueue.main.async {
+                        let heroImage = UIImage(data: data)
+                        cell.heroImageView.image = heroImage
+                        self.imageCache[currentSuperhero.name] = heroImage
+                    }
+                } else {
+                    cell.heroImageView.image = nil
                 }
-            } else {
-                cell.heroImageView.image = nil
             }
         }
         
