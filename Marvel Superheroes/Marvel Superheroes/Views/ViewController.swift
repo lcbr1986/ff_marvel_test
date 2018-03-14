@@ -11,25 +11,34 @@ import UIKit
 class ViewController: UIViewController {
     
     var superheros: [Superhero] = [Superhero]()
-
+    var currentOffset: Int = 0
+    var totalSuperheros: Int = 0
+    
     @IBOutlet weak var tableView: UITableView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        getSuperheros()
+        
+    }
+    
+    func getSuperheros() {
         let baseUrl = "https://gateway.marvel.com/v1/public/characters"
         let apiKey = "b56deb618cadad85723376a7c4956743"
         let privateKey = "a9420be765d8255c52a6896f4699d3e59a1f8364"
         let networkController = NetworkController(baseUrl: baseUrl, apiKey: apiKey, privateKey: privateKey)
-        networkController.getSuperheroes(limit: 20, offset: 0) { (superheroData, error) in
+        networkController.getSuperheroes(limit: 20, offset: self.currentOffset) { (superheroData, error) in
             
             do {
                 if let superheroJSON = try JSONSerialization.jsonObject(with: superheroData!, options: []) as? [String: Any] {
                     guard let dataArray = superheroJSON["data"] as? [String: Any] else {
                         return
                     }
-                    guard let superheroArray = dataArray["results"] as? [[String: Any]]  else {
-                        return
+                    guard let superheroArray = dataArray["results"] as? [[String: Any]],
+                        let total = dataArray["total"] as? Int else {
+                            return
                     }
+                    self.totalSuperheros = total
                     for superhero:[String: Any] in superheroArray {
                         if let hero = Superhero(json: superhero) {
                             self.superheros.append(hero)
@@ -44,9 +53,8 @@ class ViewController: UIViewController {
             } catch {
                 self.showError(error: error)
             }
-
+            
         }
-        
     }
 
     func showError(error: Error?) {
@@ -68,10 +76,18 @@ class ViewController: UIViewController {
 extension ViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if self.currentOffset < self.totalSuperheros {
+            return superheros.count + 1
+        }
         return superheros.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if self.currentOffset < self.totalSuperheros && indexPath.row == self.superheros.count {
+            let cell: SuperheroTableViewCell = tableView.dequeueReusableCell(withIdentifier: "loadingCell", for: indexPath) as! SuperheroTableViewCell
+            return cell
+        }
+        
         let cell: SuperheroTableViewCell = tableView.dequeueReusableCell(withIdentifier: "superheroCell", for: indexPath) as! SuperheroTableViewCell
         let currentSuperhero = superheros[indexPath.row]
         cell.titleLabel.text = currentSuperhero.name
@@ -81,6 +97,13 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 74
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        if self.currentOffset < self.totalSuperheros && indexPath.row == self.superheros.count {
+            self.currentOffset += 20
+            getSuperheros()
+        }
     }
 }
 

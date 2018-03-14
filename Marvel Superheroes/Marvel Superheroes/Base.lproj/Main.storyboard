@@ -58,6 +58,23 @@
                                             <outlet property="titleLabel" destination="BG9-XP-d25" id="jWg-tH-83M"/>
                                         </connections>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="loadingCell" rowHeight="74" id="E5G-fi-c5K" customClass="SuperheroTableViewCell" customModule="Marvel_Superheroes" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="102" width="375" height="74"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="E5G-fi-c5K" id="aWv-rZ-oHz">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="73.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="pJE-hR-Kn8">
+                                                    <rect key="frame" x="177" y="26" width="20" height="20"/>
+                                                </activityIndicatorView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="pJE-hR-Kn8" firstAttribute="centerX" secondItem="aWv-rZ-oHz" secondAttribute="centerX" id="Un4-Fx-Wag"/>
+                                                <constraint firstItem="pJE-hR-Kn8" firstAttribute="centerY" secondItem="aWv-rZ-oHz" secondAttribute="centerY" id="ojE-G5-HCR"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
                                 </prototypes>
                                 <connections>
                                     <outlet property="dataSource" destination="BYZ-38-t0r" id="7B8-Vi-tdX"/>
