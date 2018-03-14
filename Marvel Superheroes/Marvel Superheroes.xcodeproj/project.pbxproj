@@ -13,6 +13,9 @@
 		B2EF64C92057E1B100A662AC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B2EF64C82057E1B100A662AC /* Assets.xcassets */; };
 		B2EF64CC2057E1B100A662AC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B2EF64CA2057E1B100A662AC /* LaunchScreen.storyboard */; };
 		B2EF64D72057E1B100A662AC /* Marvel_SuperheroesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2EF64D62057E1B100A662AC /* Marvel_SuperheroesTests.swift */; };
+		B2EF64E22058462300A662AC /* NetworkController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2EF64E12058462300A662AC /* NetworkController.swift */; };
+		B2EF64EA205852F500A662AC /* Superhero.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2EF64E9205852F500A662AC /* Superhero.swift */; };
+		B2EF64ED2058583100A662AC /* Thumbnail.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2EF64EC2058583100A662AC /* Thumbnail.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +39,10 @@
 		B2EF64D22057E1B100A662AC /* Marvel SuperheroesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Marvel SuperheroesTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B2EF64D62057E1B100A662AC /* Marvel_SuperheroesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Marvel_SuperheroesTests.swift; sourceTree = "<group>"; };
 		B2EF64D82057E1B100A662AC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B2EF64E12058462300A662AC /* NetworkController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkController.swift; sourceTree = "<group>"; };
+		B2EF64E320584BA000A662AC /* Marvel Superheroes-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Marvel Superheroes-Bridging-Header.h"; sourceTree = "<group>"; };
+		B2EF64E9205852F500A662AC /* Superhero.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Superhero.swift; sourceTree = "<group>"; };
+		B2EF64EC2058583100A662AC /* Thumbnail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Thumbnail.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,11 +85,14 @@
 			isa = PBXGroup;
 			children = (
 				B2EF64C12057E1B100A662AC /* AppDelegate.swift */,
-				B2EF64C32057E1B100A662AC /* ViewController.swift */,
+				B2EF64E72058528800A662AC /* Views */,
+				B2EF64E82058529600A662AC /* Networking */,
+				B2EF64EB205852FF00A662AC /* Models */,
 				B2EF64C52057E1B100A662AC /* Main.storyboard */,
 				B2EF64C82057E1B100A662AC /* Assets.xcassets */,
 				B2EF64CA2057E1B100A662AC /* LaunchScreen.storyboard */,
 				B2EF64CD2057E1B100A662AC /* Info.plist */,
+				B2EF64E320584BA000A662AC /* Marvel Superheroes-Bridging-Header.h */,
 			);
 			path = "Marvel Superheroes";
 			sourceTree = "<group>";
@@ -94,6 +104,31 @@
 				B2EF64D82057E1B100A662AC /* Info.plist */,
 			);
 			path = "Marvel SuperheroesTests";
+			sourceTree = "<group>";
+		};
+		B2EF64E72058528800A662AC /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				B2EF64C32057E1B100A662AC /* ViewController.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		B2EF64E82058529600A662AC /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				B2EF64E12058462300A662AC /* NetworkController.swift */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
+		B2EF64EB205852FF00A662AC /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				B2EF64E9205852F500A662AC /* Superhero.swift */,
+				B2EF64EC2058583100A662AC /* Thumbnail.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -146,6 +181,7 @@
 				TargetAttributes = {
 					B2EF64BD2057E1B100A662AC = {
 						CreatedOnToolsVersion = 9.2;
+						LastSwiftMigration = 0920;
 						ProvisioningStyle = Automatic;
 					};
 					B2EF64D12057E1B100A662AC = {
@@ -201,6 +237,9 @@
 			files = (
 				B2EF64C42057E1B100A662AC /* ViewController.swift in Sources */,
 				B2EF64C22057E1B100A662AC /* AppDelegate.swift in Sources */,
+				B2EF64E22058462300A662AC /* NetworkController.swift in Sources */,
+				B2EF64ED2058583100A662AC /* Thumbnail.swift in Sources */,
+				B2EF64EA205852F500A662AC /* Superhero.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -353,11 +392,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = "Marvel Superheroes/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "pt.luis.Marvel-Superheroes";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Marvel Superheroes/Marvel Superheroes-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -367,11 +409,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = "Marvel Superheroes/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "pt.luis.Marvel-Superheroes";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Marvel Superheroes/Marvel Superheroes-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
