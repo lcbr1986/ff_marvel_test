@@ -25,9 +25,7 @@ class ViewController: UIViewController {
     
     func getSuperheros() {
         let baseUrl = "https://gateway.marvel.com/v1/public/characters"
-        let apiKey = "b56deb618cadad85723376a7c4956743"
-        let privateKey = "a9420be765d8255c52a6896f4699d3e59a1f8364"
-        let networkController = NetworkController(baseUrl: baseUrl, apiKey: apiKey, privateKey: privateKey)
+        let networkController = NetworkController(baseUrl: baseUrl)
         networkController.getSuperheroes(limit: 20, offset: self.currentOffset) { (superheroData, error) in
             
             do {

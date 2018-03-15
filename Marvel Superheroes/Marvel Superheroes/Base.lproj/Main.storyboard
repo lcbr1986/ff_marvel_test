@@ -127,6 +127,9 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="m4S-N6-Ll0" kind="show" identifier="showItemSegue" id="Akj-XE-jFy"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
@@ -148,11 +151,66 @@
                     </view>
                     <connections>
                         <outlet property="heroImageView" destination="R0v-eq-Cl0" id="l4X-0B-Yjc"/>
+                        <outlet property="tableView" destination="LWK-hx-uao" id="XuT-HI-GQD"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="khr-vd-3Dr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1276" y="132.68365817091455"/>
+        </scene>
+        <!--Item Detail View Controller-->
+        <scene sceneID="Jdd-JJ-tbo">
+            <objects>
+                <viewController id="m4S-N6-Ll0" customClass="ItemDetailViewController" customModule="Marvel_Superheroes" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="dSu-iX-4Gk">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c8u-zK-eUi">
+                                <rect key="frame" x="16" y="91" width="0.0" height="0.0"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" priority="750" constant="58" id="Az8-6x-8LP"/>
+                                    <constraint firstAttribute="height" priority="750" constant="27" id="GWW-0P-4pm"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0qi-XI-rWD">
+                                <rect key="frame" x="16" y="114" width="343" height="0.0"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" priority="750" constant="181" id="vcX-yf-frl"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="AMm-KW-qL0">
+                                <rect key="frame" x="177" y="323" width="20" height="20"/>
+                            </activityIndicatorView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="c8u-zK-eUi" secondAttribute="trailing" constant="20" symbolic="YES" id="3x7-1R-dpd"/>
+                            <constraint firstItem="AMm-KW-qL0" firstAttribute="centerX" secondItem="dSu-iX-4Gk" secondAttribute="centerX" id="7JZ-SC-G6q"/>
+                            <constraint firstItem="0qi-XI-rWD" firstAttribute="top" secondItem="c8u-zK-eUi" secondAttribute="bottom" constant="23" id="El8-pK-aHK"/>
+                            <constraint firstItem="0qi-XI-rWD" firstAttribute="leading" secondItem="lig-3p-qhr" secondAttribute="leading" constant="16" id="Fmd-mH-XEa"/>
+                            <constraint firstItem="AMm-KW-qL0" firstAttribute="centerY" secondItem="dSu-iX-4Gk" secondAttribute="centerY" id="Ihi-FY-33c"/>
+                            <constraint firstItem="c8u-zK-eUi" firstAttribute="leading" secondItem="lig-3p-qhr" secondAttribute="leading" constant="16" id="Sug-oa-okD"/>
+                            <constraint firstItem="c8u-zK-eUi" firstAttribute="top" secondItem="lig-3p-qhr" secondAttribute="top" constant="27" id="XYD-mc-nzJ"/>
+                            <constraint firstItem="lig-3p-qhr" firstAttribute="trailing" secondItem="0qi-XI-rWD" secondAttribute="trailing" constant="16" id="vG4-of-d7c"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="lig-3p-qhr"/>
+                    </view>
+                    <connections>
+                        <outlet property="activityIndicator" destination="AMm-KW-qL0" id="7nu-n2-Ofe"/>
+                        <outlet property="descriptionLabel" destination="0qi-XI-rWD" id="cnY-Br-qsb"/>
+                        <outlet property="titleLabel" destination="c8u-zK-eUi" id="Evf-fO-PAl"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9jL-dp-EIL" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2101.5999999999999" y="132.68365817091455"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Qke-K8-8KF">

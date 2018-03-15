@@ -14,6 +14,7 @@ class SuperheroDetailViewController: UIViewController {
     var superheroImage: UIImage?
 
     @IBOutlet weak var heroImageView: UIImageView!
+    @IBOutlet weak var tableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -25,6 +26,28 @@ class SuperheroDetailViewController: UIViewController {
         self.heroImageView.image = superheroImage
     }
 
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showItemSegue" {
+            
+            guard let indexPath = self.tableView.indexPathForSelectedRow else {
+                return
+            }
+            
+            let itemDetailViewController = segue.destination as! ItemDetailViewController
+            switch indexPath.section {
+            case 0:
+                itemDetailViewController.item = superhero?.comics[indexPath.row]
+            case 1:
+                itemDetailViewController.item = superhero?.events[indexPath.row]
+            case 2:
+                itemDetailViewController.item = superhero?.stories[indexPath.row]
+            case 3:
+                itemDetailViewController.item = superhero?.series[indexPath.row]
+            default:
+                return 
+            }
+        }
+    }
 }
 
 extension SuperheroDetailViewController: UITableViewDataSource, UITableViewDelegate {
