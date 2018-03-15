@@ -50,7 +50,6 @@ class ViewController: UIViewController {
                 self.decodeSuperheros(superheroData: superheroData, error: error)
             }
         }
-        
     }
 
     func showError(error: Error?) {
@@ -162,7 +161,6 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
                 }
             }
         }
-        
         return cell
     }
     
@@ -192,6 +190,5 @@ extension ViewController: UISearchBarDelegate {
         self.searchTerm = searchTerm
         getSuperheros()
     }
-    
 }
 

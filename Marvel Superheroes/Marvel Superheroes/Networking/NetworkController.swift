@@ -15,7 +15,6 @@ enum BackendError: Error {
 
 class NetworkController {
     
-    
     private var baseUrl:String
     private var apiKey:String = "b56deb618cadad85723376a7c4956743"
     private var privateKey:String = "a9420be765d8255c52a6896f4699d3e59a1f8364"
@@ -25,7 +24,6 @@ class NetworkController {
     }
     
     public func getSuperheroes(limit: Int, offset: Int, completionHandler: @escaping (Data?, Error?) -> Void) {
-        
         let timestamp = NSDate().timeIntervalSince1970
         let hash = md5("\(timestamp)\(privateKey)\(apiKey)")
         let endpoint = "\(baseUrl)?apikey=\(apiKey)&ts=\(timestamp)&hash=\(hash)&limit=\(limit)&offset=\(offset)"
@@ -50,7 +48,6 @@ class NetworkController {
     }
     
     private func createRequest(urlString: String, completionHandler: @escaping (Data?, Error?) -> Void) {
-        
         guard let url = URL(string: urlString) else {
             let error = BackendError.urlError(reason: "Could not construct URL")
             completionHandler(nil, error)
@@ -70,9 +67,7 @@ class NetworkController {
                 completionHandler(nil, error)
                 return
             }
-            
             completionHandler(responseData, nil)
-            
         })
         task.resume()
     }
@@ -91,5 +86,3 @@ class NetworkController {
         return hexString
     }
 }
-
-

@@ -52,7 +52,6 @@ class ItemDetailViewController: UIViewController {
                 self.descriptionLabel.text = error.localizedDescription
             }
         }
-        
     }
     
     func setDetails() {
@@ -63,5 +62,4 @@ class ItemDetailViewController: UIViewController {
         self.titleLabel.text = item.name
         self.descriptionLabel.text = item.description
     }
-
 }

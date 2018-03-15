@@ -20,6 +20,7 @@
 		B2EF64F72059978900A662AC /* SuperheroDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2EF64F62059978900A662AC /* SuperheroDetailViewController.swift */; };
 		B2EF64F9205A89F100A662AC /* ItemDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2EF64F8205A89F100A662AC /* ItemDetailViewController.swift */; };
 		B2EF64FB205A9D2300A662AC /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2EF64FA205A9D2300A662AC /* Constants.swift */; };
+		B2EF64FD205AA1F500A662AC /* Items.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2EF64FC205AA1F500A662AC /* Items.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +52,7 @@
 		B2EF64F62059978900A662AC /* SuperheroDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuperheroDetailViewController.swift; sourceTree = "<group>"; };
 		B2EF64F8205A89F100A662AC /* ItemDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemDetailViewController.swift; sourceTree = "<group>"; };
 		B2EF64FA205A9D2300A662AC /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		B2EF64FC205AA1F500A662AC /* Items.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Items.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -139,6 +141,7 @@
 			children = (
 				B2EF64E9205852F500A662AC /* Superhero.swift */,
 				B2EF64EC2058583100A662AC /* Thumbnail.swift */,
+				B2EF64FC205AA1F500A662AC /* Items.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -253,6 +256,7 @@
 				B2EF64F3205976A200A662AC /* SuperheroTableViewCell.swift in Sources */,
 				B2EF64F9205A89F100A662AC /* ItemDetailViewController.swift in Sources */,
 				B2EF64F72059978900A662AC /* SuperheroDetailViewController.swift in Sources */,
+				B2EF64FD205AA1F500A662AC /* Items.swift in Sources */,
 				B2EF64ED2058583100A662AC /* Thumbnail.swift in Sources */,
 				B2EF64EA205852F500A662AC /* Superhero.swift in Sources */,
 				B2EF64FB205A9D2300A662AC /* Constants.swift in Sources */,
