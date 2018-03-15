@@ -131,7 +131,7 @@
                                 </constraints>
                             </imageView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="LWK-hx-uao">
-                                <rect key="frame" x="0.0" y="215" width="375" height="452"/>
+                                <rect key="frame" x="0.0" y="263" width="375" height="404"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="itemsCell" id="1iK-Tx-BZK">
@@ -151,19 +151,33 @@
                                     <outlet property="delegate" destination="QmY-fk-JZp" id="BzQ-lh-Vxf"/>
                                 </connections>
                             </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hme-a8-6AZ">
+                                <rect key="frame" x="16" y="207" width="343" height="48"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="48" id="6cA-5e-bhV"/>
+                                </constraints>
+                                <state key="normal" title="Favorite"/>
+                                <connections>
+                                    <action selector="favoriteButtonPressed:" destination="QmY-fk-JZp" eventType="touchUpInside" id="dgQ-Hg-7ql"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="hme-a8-6AZ" firstAttribute="leading" secondItem="NNG-8p-ldy" secondAttribute="leading" constant="16" id="0T8-Bn-pdO"/>
+                            <constraint firstItem="LWK-hx-uao" firstAttribute="top" secondItem="hme-a8-6AZ" secondAttribute="bottom" constant="8" id="0cF-sU-ax5"/>
                             <constraint firstItem="LWK-hx-uao" firstAttribute="trailing" secondItem="NNG-8p-ldy" secondAttribute="trailing" id="2rv-fg-65z"/>
                             <constraint firstItem="LWK-hx-uao" firstAttribute="leading" secondItem="NNG-8p-ldy" secondAttribute="leading" id="Hqa-lV-1vq"/>
                             <constraint firstItem="R0v-eq-Cl0" firstAttribute="top" secondItem="NNG-8p-ldy" secondAttribute="top" constant="15" id="QFY-ME-d9u"/>
-                            <constraint firstItem="LWK-hx-uao" firstAttribute="top" secondItem="R0v-eq-Cl0" secondAttribute="bottom" constant="8" id="Zt2-dD-TpD"/>
+                            <constraint firstItem="NNG-8p-ldy" firstAttribute="trailing" secondItem="hme-a8-6AZ" secondAttribute="trailing" constant="16" id="cMV-Cj-1nJ"/>
                             <constraint firstItem="R0v-eq-Cl0" firstAttribute="centerX" secondItem="4fQ-8K-7X5" secondAttribute="centerX" id="o9l-YK-JIB"/>
                             <constraint firstItem="LWK-hx-uao" firstAttribute="bottom" secondItem="NNG-8p-ldy" secondAttribute="bottom" id="riP-7o-m9x"/>
+                            <constraint firstItem="hme-a8-6AZ" firstAttribute="top" secondItem="R0v-eq-Cl0" secondAttribute="bottom" id="ufZ-49-pe4"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="NNG-8p-ldy"/>
                     </view>
                     <connections>
+                        <outlet property="favoriteButton" destination="hme-a8-6AZ" id="JHF-pc-P59"/>
                         <outlet property="heroImageView" destination="R0v-eq-Cl0" id="l4X-0B-Yjc"/>
                         <outlet property="tableView" destination="LWK-hx-uao" id="XuT-HI-GQD"/>
                     </connections>

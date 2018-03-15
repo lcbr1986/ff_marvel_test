@@ -14,6 +14,7 @@ class ViewController: UIViewController {
     var currentOffset: Int = 0
     var totalSuperheros: Int = 0
     var imageCache:[String: UIImage] = [String: UIImage]()
+    let defaults = UserDefaults.standard
     
     var searchTerm = ""
     
@@ -23,7 +24,11 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         getSuperheros()
-        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        tableView.reloadData()
     }
     
     func resetList() {
@@ -122,6 +127,14 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
         let cell: SuperheroTableViewCell = tableView.dequeueReusableCell(withIdentifier: "superheroCell", for: indexPath) as! SuperheroTableViewCell
         let currentSuperhero = superheros[indexPath.row]
         cell.titleLabel.text = currentSuperhero.name
+        
+        let favoriteSuperhero = defaults.string(forKey: Constants.favoriteKey)
+        
+        if favoriteSuperhero == currentSuperhero.name {
+            cell.backgroundColor = .yellow
+        } else {
+            cell.backgroundColor = .clear   
+        }
         
         cell.heroImageView.image = nil
         if let heroImage = imageCache[currentSuperhero.name] {

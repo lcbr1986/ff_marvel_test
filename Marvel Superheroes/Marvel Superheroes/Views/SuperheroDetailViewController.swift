@@ -12,9 +12,11 @@ class SuperheroDetailViewController: UIViewController {
     
     var superhero: Superhero?
     var superheroImage: UIImage?
+    let defaults = UserDefaults.standard
 
     @IBOutlet weak var heroImageView: UIImageView!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var favoriteButton: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -24,6 +26,8 @@ class SuperheroDetailViewController: UIViewController {
         self.title = superhero.name
         
         self.heroImageView.image = superheroImage
+        
+        setFavoriteButtonText() 
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -48,6 +52,28 @@ class SuperheroDetailViewController: UIViewController {
             }
         }
     }
+    
+    func setFavoriteButtonText() {
+        let favoriteSuperhero = defaults.string(forKey: Constants.favoriteKey)
+        
+        if favoriteSuperhero == superhero?.name {
+            favoriteButton.setTitle("Unset as Favorite Superhero", for: .normal)
+        } else {
+            favoriteButton.setTitle("Set as Favorite Superhero", for: .normal)
+        }
+    }
+    
+    @IBAction func favoriteButtonPressed(_ sender: Any) {
+        let favoriteSuperhero = defaults.string(forKey: Constants.favoriteKey)
+        
+        if favoriteSuperhero == superhero?.name {
+            defaults.set(nil, forKey: Constants.favoriteKey)
+        } else {
+            defaults.set(superhero?.name, forKey: Constants.favoriteKey)
+        }
+        setFavoriteButtonText()
+    }
+    
 }
 
 extension SuperheroDetailViewController: UITableViewDataSource, UITableViewDelegate {
