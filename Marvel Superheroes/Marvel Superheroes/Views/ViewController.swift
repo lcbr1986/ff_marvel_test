@@ -15,7 +15,10 @@ class ViewController: UIViewController {
     var totalSuperheros: Int = 0
     var imageCache:[String: UIImage] = [String: UIImage]()
     
+    var searchTerm = ""
+    
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var searchBar: UISearchBar!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,37 +26,26 @@ class ViewController: UIViewController {
         
     }
     
+    func resetList() {
+        currentOffset = 0
+        totalSuperheros = 0
+        superheros = [Superhero]()
+        searchTerm = ""
+    }
+    
     func getSuperheros() {
         let baseUrl = "https://gateway.marvel.com/v1/public/characters"
         let networkController = NetworkController(baseUrl: baseUrl)
-        networkController.getSuperheroes(limit: 20, offset: self.currentOffset) { (superheroData, error) in
-            
-            do {
-                if let superheroJSON = try JSONSerialization.jsonObject(with: superheroData!, options: []) as? [String: Any] {
-                    guard let dataArray = superheroJSON["data"] as? [String: Any] else {
-                        return
-                    }
-                    guard let superheroArray = dataArray["results"] as? [[String: Any]],
-                        let total = dataArray["total"] as? Int else {
-                            return
-                    }
-                    self.totalSuperheros = total
-                    for superhero:[String: Any] in superheroArray {
-                        if let hero = Superhero(json: superhero) {
-                            self.superheros.append(hero)
-                        }
-                    }
-                    DispatchQueue.main.async {
-                        self.tableView.reloadData()
-                    }
-                } else {
-                    self.showError(error: error)
-                }
-            } catch {
-                self.showError(error: error)
+        if searchTerm == "" {
+            networkController.getSuperheroes(limit: 20, offset: self.currentOffset) { (superheroData, error) in
+                self.decodeSuperheros(superheroData: superheroData, error: error)
             }
-            
+        } else {
+            networkController.getSuperherosByName(searchText: searchTerm, limit: 20, offset: self.currentOffset) { (superheroData, error) in
+                self.decodeSuperheros(superheroData: superheroData, error: error)
+            }
         }
+        
     }
 
     func showError(error: Error?) {
@@ -69,6 +61,33 @@ class ViewController: UIViewController {
         let alertController = UIAlertController(title: "Error", message:
             messageToShow, preferredStyle: UIAlertControllerStyle.alert)
         self.present(alertController, animated: true, completion: nil)
+    }
+    
+    func decodeSuperheros(superheroData: Data?, error: Error?) {
+        do {
+            if let superheroJSON = try JSONSerialization.jsonObject(with: superheroData!, options: []) as? [String: Any] {
+                guard let dataArray = superheroJSON["data"] as? [String: Any] else {
+                    return
+                }
+                guard let superheroArray = dataArray["results"] as? [[String: Any]],
+                    let total = dataArray["total"] as? Int else {
+                        return
+                }
+                self.totalSuperheros = total
+                for superhero:[String: Any] in superheroArray {
+                    if let hero = Superhero(json: superhero) {
+                        self.superheros.append(hero)
+                    }
+                }
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
+            } else {
+                self.showError(error: error)
+            }
+        } catch {
+            self.showError(error: error)
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -148,5 +167,18 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
     }
+}
+
+extension ViewController: UISearchBarDelegate {
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
+        resetList()
+        guard let searchTerm = searchBar.text else {
+            return
+        }
+        self.searchTerm = searchTerm
+        getSuperheros()
+    }
+    
 }
 

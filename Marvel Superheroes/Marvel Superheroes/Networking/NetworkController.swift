@@ -33,6 +33,14 @@ class NetworkController {
         createRequest(urlString: endpoint, completionHandler: completionHandler)
     }
     
+    public func getSuperherosByName(searchText: String, limit: Int, offset: Int, completionHandler: @escaping (Data?, Error?) -> Void) {
+        let timestamp = NSDate().timeIntervalSince1970
+        let hash = md5("\(timestamp)\(privateKey)\(apiKey)")
+        let endpoint = "\(baseUrl)?apikey=\(apiKey)&ts=\(timestamp)&hash=\(hash)&limit=\(limit)&offset=\(offset)&nameStartsWith=\(searchText)"
+        
+        createRequest(urlString: endpoint, completionHandler: completionHandler)
+    }
+    
     public func getItemDetails(completionHandler: @escaping (Data?, Error?) -> Void) {
         let timestamp = NSDate().timeIntervalSince1970
         let hash = md5("\(timestamp)\(privateKey)\(apiKey)")

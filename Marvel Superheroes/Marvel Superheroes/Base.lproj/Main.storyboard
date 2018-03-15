@@ -20,7 +20,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="DKu-I2-bEd">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <rect key="frame" x="0.0" y="120" width="375" height="547"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="superheroCell" rowHeight="74" id="P3Y-78-ihM" customClass="SuperheroTableViewCell" customModule="Marvel_Superheroes" customModuleProvider="target">
@@ -82,18 +82,32 @@
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="c05-DI-lwW"/>
                                 </connections>
                             </tableView>
+                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="1ec-Rj-ZQV">
+                                <rect key="frame" x="0.0" y="64" width="375" height="56"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="56" id="r2K-q0-Won"/>
+                                </constraints>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="BD6-W2-ckH"/>
+                                </connections>
+                            </searchBar>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="DKu-I2-bEd" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="0PK-A7-yP1"/>
                             <constraint firstItem="DKu-I2-bEd" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="4FM-wf-1Lc"/>
+                            <constraint firstItem="DKu-I2-bEd" firstAttribute="top" secondItem="1ec-Rj-ZQV" secondAttribute="bottom" id="929-Nj-afX"/>
+                            <constraint firstItem="1ec-Rj-ZQV" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="EJK-WQ-0hE"/>
                             <constraint firstItem="DKu-I2-bEd" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="F5w-xN-FIx"/>
-                            <constraint firstItem="DKu-I2-bEd" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="lJL-w4-M72"/>
+                            <constraint firstItem="1ec-Rj-ZQV" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="U3N-RC-hgN"/>
+                            <constraint firstItem="1ec-Rj-ZQV" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="i1k-yc-Np0"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" id="aq5-ot-EtI"/>
                     <connections>
+                        <outlet property="searchBar" destination="1ec-Rj-ZQV" id="eJ4-xM-4Y3"/>
                         <outlet property="tableView" destination="DKu-I2-bEd" id="FNJ-Et-869"/>
                     </connections>
                 </viewController>
