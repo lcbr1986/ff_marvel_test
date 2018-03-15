@@ -12,7 +12,6 @@
 		B2EF64C72057E1B100A662AC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B2EF64C52057E1B100A662AC /* Main.storyboard */; };
 		B2EF64C92057E1B100A662AC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B2EF64C82057E1B100A662AC /* Assets.xcassets */; };
 		B2EF64CC2057E1B100A662AC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B2EF64CA2057E1B100A662AC /* LaunchScreen.storyboard */; };
-		B2EF64D72057E1B100A662AC /* Marvel_SuperheroesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2EF64D62057E1B100A662AC /* Marvel_SuperheroesTests.swift */; };
 		B2EF64E22058462300A662AC /* NetworkController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2EF64E12058462300A662AC /* NetworkController.swift */; };
 		B2EF64EA205852F500A662AC /* Superhero.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2EF64E9205852F500A662AC /* Superhero.swift */; };
 		B2EF64ED2058583100A662AC /* Thumbnail.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2EF64EC2058583100A662AC /* Thumbnail.swift */; };
@@ -21,6 +20,7 @@
 		B2EF64F9205A89F100A662AC /* ItemDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2EF64F8205A89F100A662AC /* ItemDetailViewController.swift */; };
 		B2EF64FB205A9D2300A662AC /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2EF64FA205A9D2300A662AC /* Constants.swift */; };
 		B2EF64FD205AA1F500A662AC /* Items.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2EF64FC205AA1F500A662AC /* Items.swift */; };
+		B2EF64FF205AD93300A662AC /* MD5Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2EF64FE205AD93300A662AC /* MD5Tests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,7 +42,6 @@
 		B2EF64CB2057E1B100A662AC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B2EF64CD2057E1B100A662AC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B2EF64D22057E1B100A662AC /* Marvel SuperheroesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Marvel SuperheroesTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		B2EF64D62057E1B100A662AC /* Marvel_SuperheroesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Marvel_SuperheroesTests.swift; sourceTree = "<group>"; };
 		B2EF64D82057E1B100A662AC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B2EF64E12058462300A662AC /* NetworkController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkController.swift; sourceTree = "<group>"; };
 		B2EF64E320584BA000A662AC /* Marvel Superheroes-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Marvel Superheroes-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -53,6 +52,7 @@
 		B2EF64F8205A89F100A662AC /* ItemDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemDetailViewController.swift; sourceTree = "<group>"; };
 		B2EF64FA205A9D2300A662AC /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		B2EF64FC205AA1F500A662AC /* Items.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Items.swift; sourceTree = "<group>"; };
+		B2EF64FE205AD93300A662AC /* MD5Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MD5Tests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,7 +111,7 @@
 		B2EF64D52057E1B100A662AC /* Marvel SuperheroesTests */ = {
 			isa = PBXGroup;
 			children = (
-				B2EF64D62057E1B100A662AC /* Marvel_SuperheroesTests.swift */,
+				B2EF64FE205AD93300A662AC /* MD5Tests.swift */,
 				B2EF64D82057E1B100A662AC /* Info.plist */,
 			);
 			path = "Marvel SuperheroesTests";
@@ -267,7 +267,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B2EF64D72057E1B100A662AC /* Marvel_SuperheroesTests.swift in Sources */,
+				B2EF64FF205AD93300A662AC /* MD5Tests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

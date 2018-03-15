@@ -72,7 +72,7 @@ class NetworkController {
         task.resume()
     }
     
-    private func md5(_ string: String) -> String {
+    internal func md5(_ string: String) -> String {
         let context = UnsafeMutablePointer<CC_MD5_CTX>.allocate(capacity: 1)
         var digest = Array<UInt8>(repeating:0, count:Int(CC_MD5_DIGEST_LENGTH))
         CC_MD5_Init(context)
