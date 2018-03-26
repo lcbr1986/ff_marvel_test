@@ -43,13 +43,28 @@ class ViewController: UIViewController {
         let networkController = NetworkController(baseUrl: baseUrl)
         if searchTerm == "" {
             networkController.getSuperheroes(limit: 20, offset: self.currentOffset) { (superheroData, error) in
-                self.decodeSuperheros(superheroData: superheroData, error: error)
+                self.updateValues(superheroData: superheroData, error: error)
             }
         } else {
             networkController.getSuperherosByName(searchText: searchTerm, limit: 20, offset: self.currentOffset) { (superheroData, error) in
-                self.decodeSuperheros(superheroData: superheroData, error: error)
+                self.updateValues(superheroData: superheroData, error: error)
             }
         }
+    }
+    
+    func updateValues(superheroData: Data?, error: Error?) {
+        SuperheroParser.decodeSuperheros(superheroData: superheroData, error: error, completionHandler: { (arg0, closureError) in
+            let (superheros, total) = arg0
+            if closureError != nil {
+                self.showError(error: closureError)
+            } else {
+                self.superheros.append(contentsOf: superheros)
+                self.totalSuperheros = total
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
+            }
+        })
     }
 
     func showError(error: Error?) {
@@ -67,32 +82,32 @@ class ViewController: UIViewController {
         self.present(alertController, animated: true, completion: nil)
     }
     
-    func decodeSuperheros(superheroData: Data?, error: Error?) {
-        do {
-            if let superheroJSON = try JSONSerialization.jsonObject(with: superheroData!, options: []) as? [String: Any] {
-                guard let dataArray = superheroJSON["data"] as? [String: Any] else {
-                    return
-                }
-                guard let superheroArray = dataArray["results"] as? [[String: Any]],
-                    let total = dataArray["total"] as? Int else {
-                        return
-                }
-                self.totalSuperheros = total
-                for superhero:[String: Any] in superheroArray {
-                    if let hero = Superhero(json: superhero) {
-                        self.superheros.append(hero)
-                    }
-                }
-                DispatchQueue.main.async {
-                    self.tableView.reloadData()
-                }
-            } else {
-                self.showError(error: error)
-            }
-        } catch {
-            self.showError(error: error)
-        }
-    }
+//    func decodeSuperheros(superheroData: Data?, error: Error?) {
+//        do {
+//            if let superheroJSON = try JSONSerialization.jsonObject(with: superheroData!, options: []) as? [String: Any] {
+//                guard let dataArray = superheroJSON["data"] as? [String: Any] else {
+//                    return
+//                }
+//                guard let superheroArray = dataArray["results"] as? [[String: Any]],
+//                    let total = dataArray["total"] as? Int else {
+//                        return
+//                }
+//                self.totalSuperheros = total
+//                for superhero:[String: Any] in superheroArray {
+//                    if let hero = Superhero(json: superhero) {
+//                        self.superheros.append(hero)
+//                    }
+//                }
+//                DispatchQueue.main.async {
+//                    self.tableView.reloadData()
+//                }
+//            } else {
+//                self.showError(error: error)
+//            }
+//        } catch {
+//            self.showError(error: error)
+//        }
+//    }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showDetailSegue" {
