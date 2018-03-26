@@ -15,15 +15,11 @@ enum BackendError: Error {
 
 class NetworkController {
     
-    private var baseUrl:String
     private var apiKey:String = "b56deb618cadad85723376a7c4956743"
     private var privateKey:String = "a9420be765d8255c52a6896f4699d3e59a1f8364"
     
-    init(baseUrl:String) {
-        self.baseUrl = baseUrl
-    }
-    
     public func getSuperheroes(limit: Int, offset: Int, completionHandler: @escaping (Data?, Error?) -> Void) {
+        let baseUrl = "https://gateway.marvel.com/v1/public/characters"
         let timestamp = NSDate().timeIntervalSince1970
         let hash = md5("\(timestamp)\(privateKey)\(apiKey)")
         let endpoint = "\(baseUrl)?apikey=\(apiKey)&ts=\(timestamp)&hash=\(hash)&limit=\(limit)&offset=\(offset)"
@@ -32,6 +28,7 @@ class NetworkController {
     }
     
     public func getSuperherosByName(searchText: String, limit: Int, offset: Int, completionHandler: @escaping (Data?, Error?) -> Void) {
+        let baseUrl = "https://gateway.marvel.com/v1/public/characters"
         let timestamp = NSDate().timeIntervalSince1970
         let hash = md5("\(timestamp)\(privateKey)\(apiKey)")
         let endpoint = "\(baseUrl)?apikey=\(apiKey)&ts=\(timestamp)&hash=\(hash)&limit=\(limit)&offset=\(offset)&nameStartsWith=\(searchText)"
@@ -39,7 +36,7 @@ class NetworkController {
         createRequest(urlString: endpoint, completionHandler: completionHandler)
     }
     
-    public func getItemDetails(completionHandler: @escaping (Data?, Error?) -> Void) {
+    public func getItemDetails(baseUrl: String, completionHandler: @escaping (Data?, Error?) -> Void) {
         let timestamp = NSDate().timeIntervalSince1970
         let hash = md5("\(timestamp)\(privateKey)\(apiKey)")
         let endpoint = "\(baseUrl)?apikey=\(apiKey)&ts=\(timestamp)&hash=\(hash)"
