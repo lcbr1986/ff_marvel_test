@@ -31,7 +31,7 @@ class NetworkController {
         let baseUrl = "https://gateway.marvel.com/v1/public/characters"
         let timestamp = NSDate().timeIntervalSince1970
         let hash = md5("\(timestamp)\(privateKey)\(apiKey)")
-        let endpoint = "\(baseUrl)?apikey=\(apiKey)&ts=\(timestamp)&hash=\(hash)&limit=\(limit)&offset=\(offset)&nameStartsWith=\(searchText)"
+        let endpoint = "\(baseUrl)?apikey=\(apiKey)&ts=\(timestamp)&hash=\(hash)&limit=\(limit)&offset=\(offset)&nameStartsWith=\(searchText.replacingOccurrences(of: " ", with: "%20"))"
         
         createRequest(urlString: endpoint, completionHandler: completionHandler)
     }
