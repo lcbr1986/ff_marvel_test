@@ -83,33 +83,6 @@ class ViewController: UIViewController {
         self.present(alertController, animated: true, completion: nil)
     }
     
-//    func decodeSuperheros(superheroData: Data?, error: Error?) {
-//        do {
-//            if let superheroJSON = try JSONSerialization.jsonObject(with: superheroData!, options: []) as? [String: Any] {
-//                guard let dataArray = superheroJSON["data"] as? [String: Any] else {
-//                    return
-//                }
-//                guard let superheroArray = dataArray["results"] as? [[String: Any]],
-//                    let total = dataArray["total"] as? Int else {
-//                        return
-//                }
-//                self.totalSuperheros = total
-//                for superhero:[String: Any] in superheroArray {
-//                    if let hero = Superhero(json: superhero) {
-//                        self.superheros.append(hero)
-//                    }
-//                }
-//                DispatchQueue.main.async {
-//                    self.tableView.reloadData()
-//                }
-//            } else {
-//                self.showError(error: error)
-//            }
-//        } catch {
-//            self.showError(error: error)
-//        }
-//    }
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showDetailSegue" {
             
