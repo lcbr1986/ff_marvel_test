@@ -39,8 +39,7 @@ class ViewController: UIViewController {
     }
     
     func getSuperheros() {
-        let baseUrl = "https://gateway.marvel.com/v1/public/characters"
-        let networkController = NetworkController(baseUrl: baseUrl)
+        let networkController = NetworkController()
         if searchTerm == "" {
             networkController.getSuperheroes(limit: 20, offset: self.currentOffset) { (superheroData, error) in
                 self.updateValues(superheroData: superheroData, error: error)

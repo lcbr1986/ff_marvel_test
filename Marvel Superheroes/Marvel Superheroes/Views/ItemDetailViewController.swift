@@ -22,8 +22,8 @@ class ItemDetailViewController: UIViewController {
         guard let item = self.item else {
             return
         }
-        let networkController = NetworkController(baseUrl: item.resourceURI.replacingOccurrences(of: "http", with: "https"))
-        networkController.getItemDetails { (itemData, error) in
+        let networkController = NetworkController()
+        networkController.getItemDetails(baseUrl: item.resourceURI.replacingOccurrences(of: "http", with: "https")) { (itemData, error) in
             do {
                 if let itemJson = try JSONSerialization.jsonObject(with: itemData!, options: []) as? [String: Any] {
                     guard let dataArray = itemJson["data"] as? [String: Any],
