@@ -10,7 +10,7 @@ import Foundation
 
 struct SuperheroParser {
     
-    static func decodeSuperheros(superheroData: Data?, error: Error?, completionHandler: @escaping (([Superhero], Int), Error?) -> Void) {
+    static func decodeSuperheros(superheroData: Data?, error: Error?, completionHandler: @escaping (([Superhero], Int)?, Error?) -> Void) {
         do {
             if let superheroJSON = try JSONSerialization.jsonObject(with: superheroData!, options: []) as? [String: Any] {
                 guard let dataArray = superheroJSON["data"] as? [String: Any] else {
@@ -28,10 +28,10 @@ struct SuperheroParser {
                 }
                 completionHandler((superheros, total), nil)
             } else {
-                completionHandler(([], 0), error)
+                completionHandler(nil, error)
             }
         } catch {
-            completionHandler(([], 0), error)
+            completionHandler(nil, error)
         }
     }
 }

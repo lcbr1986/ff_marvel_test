@@ -53,10 +53,12 @@ class ViewController: UIViewController {
     
     func updateValues(superheroData: Data?, error: Error?) {
         SuperheroParser.decodeSuperheros(superheroData: superheroData, error: error, completionHandler: { (arg0, closureError) in
-            let (superheros, total) = arg0
             if closureError != nil {
                 self.showError(error: closureError)
             } else {
+                guard let (superheros, total) = arg0 else {
+                    return
+                }
                 self.superheros.append(contentsOf: superheros)
                 self.totalSuperheros = total
                 DispatchQueue.main.async {

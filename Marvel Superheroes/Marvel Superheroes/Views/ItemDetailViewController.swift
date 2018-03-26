@@ -24,33 +24,20 @@ class ItemDetailViewController: UIViewController {
         }
         let networkController = NetworkController()
         networkController.getItemDetails(baseUrl: item.resourceURI.replacingOccurrences(of: "http", with: "https")) { (itemData, error) in
-            do {
-                if let itemJson = try JSONSerialization.jsonObject(with: itemData!, options: []) as? [String: Any] {
-                    guard let dataArray = itemJson["data"] as? [String: Any],
-                    let itemArray = dataArray["results"] as? [[String: Any]] else {
-                        return
-                    }
-                    let itemDictionary: [String: Any] = itemArray[0]
-                    guard let title = itemDictionary["title"] as? String,
-                        let resourceURI = itemDictionary["resourceURI"] as? String,
-                        let description = itemDictionary["description"] as? String else {
-                            DispatchQueue.main.async {
-                                self.activityIndicator.stopAnimating()
-                            }
-                            return
-                    }
-                    self.item = Items(name: title, resourceURI: resourceURI, description: description)
+            ItemParser.decodeItems(itemData: itemData, error: error, completionHandler: { (item, error) in
+                DispatchQueue.main.async {
+                    self.activityIndicator.stopAnimating()
+                }
+                if error != nil {
+                    self.descriptionLabel.text = error?.localizedDescription
+                } else {
+                    self.item = item
                     
                     DispatchQueue.main.async {
-                        self.activityIndicator.stopAnimating()
                         self.setDetails()
                     }
-                } else {
-                    self.descriptionLabel.text = error?.localizedDescription
                 }
-            } catch {
-                self.descriptionLabel.text = error.localizedDescription
-            }
+            })
         }
     }
     
