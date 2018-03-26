@@ -187,7 +187,7 @@ extension ViewController: UISearchBarDelegate {
         guard let searchTerm = searchBar.text else {
             return
         }
-        self.searchTerm = searchTerm
+        self.searchTerm = searchTerm.replacingOccurrences(of: " ", with: "%20")
         getSuperheros()
     }
 }
